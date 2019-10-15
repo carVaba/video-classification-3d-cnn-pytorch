@@ -1,0 +1,16 @@
+--2019-10-06 20:19:41--  https://drive.google.com/open?id=1id0l08FAYwFykhVo0VId8s6Ss1a162WI
+Resolving drive.google.com (drive.google.com)... 172.217.2.206, 2607:f8b0:4008:812::200e
+Connecting to drive.google.com (drive.google.com)|172.217.2.206|:443... connected.
+HTTP request sent, awaiting response... 307 OK
+Location: https://drive.google.com/file/d/1id0l08FAYwFykhVo0VId8s6Ss1a162WI/view?usp=drive_open [following]
+--2019-10-06 20:19:41--  https://drive.google.com/file/d/1id0l08FAYwFykhVo0VId8s6Ss1a162WI/view?usp=drive_open
+Reusing existing connection to drive.google.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: 'open?id=1id0l08FAYwFykhVo0VId8s6Ss1a162WI.1'
+
+     0K .......... .......... .......... .......... ..........  456K
+    50K .......... ....                                         718K=0.1s
+
+2019-10-06 20:19:42 (498 KB/s) - 'open?id=1id0l08FAYwFykhVo0VId8s6Ss1a162WI.1' saved [66547]
+
