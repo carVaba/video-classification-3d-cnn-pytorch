@@ -18,7 +18,7 @@ def parse_opts():
     parser.set_defaults(verbose=False)
     parser.add_argument('--verbose', action='store_true', help='')
     parser.set_defaults(verbose=False)
-
+    parser.add_argument('--overlapping',default='0',type=int, help='Size for the overlapping')
     args = parser.parse_args()
 
     return args

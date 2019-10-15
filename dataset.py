@@ -79,7 +79,7 @@ def get_video_names_and_annotations(data, subset):
     return video_names, annotations
 
 
-def make_dataset(video_path, sample_duration):
+def make_dataset(video_path, sample_duration , overlapping = 0):
     dataset = []
 
     n_frames = len(os.listdir(video_path))
@@ -93,7 +93,7 @@ def make_dataset(video_path, sample_duration):
     }
 
     step = sample_duration
-    for i in range(1, (n_frames - sample_duration + 1), step):
+    for i in range(1, (n_frames - sample_duration + 1), (step - overlapping)):
         sample_i = copy.deepcopy(sample)
         sample_i['frame_indices'] = list(range(i, i + sample_duration))
         sample_i['segment'] = torch.IntTensor([i, i + sample_duration - 1])
@@ -105,8 +105,8 @@ def make_dataset(video_path, sample_duration):
 class Video(data.Dataset):
     def __init__(self, video_path,
                  spatial_transform=None, temporal_transform=None,
-                 sample_duration=16, get_loader=get_default_video_loader):
-        self.data = make_dataset(video_path, sample_duration)
+                 sample_duration=16, get_loader=get_default_video_loader,overlapping=0):
+        self.data = make_dataset(video_path, sample_duration,overlapping)
 
         self.spatial_transform = spatial_transform
         self.temporal_transform = temporal_transform

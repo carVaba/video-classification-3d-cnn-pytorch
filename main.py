@@ -18,12 +18,9 @@ if __name__=="__main__":
     opt.sample_size = 112
     opt.sample_duration = 16
     opt.n_classes = 400
-
     model = generate_model(opt)
     print('loading model {}'.format(opt.model))
     model_data = torch.load(opt.model)
-    print(model_data['arch'])
-    print(opt.arch)
     assert opt.arch == model_data['arch']
     model.load_state_dict(model_data['state_dict'])
     model.eval()
