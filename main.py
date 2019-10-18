@@ -51,10 +51,11 @@ if __name__=="__main__":
             subprocess.call('mkdir tmp', shell=True)
             subprocess.call('ffmpeg -i {} -loglevel quiet tmp/image_%05d.jpg'.format(video_path),
                             shell=True)
-
-            result = classify_video('tmp', input_file, class_names, model, opt)
-            outputs.append(result)
-
+            try:
+                result = classify_video('tmp', input_file, class_names, model, opt)
+                outputs.append(result)
+            except:
+                print(f"Error for the file {input_file}")
             subprocess.call('rm -rf tmp', shell=True)
         else:
             print('{} does not exist'.format(input_file))
