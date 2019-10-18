@@ -48,17 +48,17 @@ if __name__=="__main__":
         video_path = os.path.join(opt.video_root, input_file)
         if os.path.exists(video_path):
             print(video_path)
-            subprocess.call('mkdir tmp', shell=True)
-            subprocess.call('ffmpeg -i {} -loglevel quiet tmp/image_%05d.jpg'.format(video_path),
+            subprocess.call(f"mkdir {input_file}", shell=True)
+            subprocess.call(f"ffmpeg -i {video_path} -loglevel quiet {input_file}/image_%05d.jpg",
                             shell=True)
             try:
-                result = classify_video('tmp', input_file, class_names, model, opt)
+                result = classify_video(input_file, input_file, class_names, model, opt)
                 outputs.append(result)
             except:
                 print(f"Error for the file {input_file}")
-            subprocess.call('rm -rf tmp', shell=True)
+            #subprocess.call('rm -rf tmp', shell=True)
         else:
-            print('{} does not exist'.format(input_file))
+            print(f"{input_file} does not exist")
 
     if os.path.exists('tmp'):
         subprocess.call('rm -rf tmp', shell=True)
