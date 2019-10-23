@@ -44,12 +44,15 @@ if __name__=="__main__":
         subprocess.call('rm -rf tmp', shell=True)
 
     outputs = []
+    process_video_folder = "videoPRO"
+    if os.path.exists(process_video_folder):
+        subprocess.call(f"rm -rf {process_video_folder}" , shell=True)
     for input_file in input_files:
         video_path = os.path.join(opt.video_root, input_file)
         if os.path.exists(video_path):
             print(video_path)
-            subprocess.call(f"mkdir {input_file}", shell=True)
-            subprocess.call(f"ffmpeg -i {video_path} -loglevel quiet {input_file}/image_%05d.jpg",
+            subprocess.call(f"mkdir {process_video_folder}/{input_file}", shell=True)
+            subprocess.call(f"ffmpeg -i {video_path} -loglevel quiet {process_video_folder}/{input_file}/image_%05d.jpg",
                             shell=True)
             try:
                 result = classify_video(input_file, input_file, class_names, model, opt)
