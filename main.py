@@ -47,6 +47,7 @@ if __name__=="__main__":
     process_video_folder = "videoPRO"
     if os.path.exists(process_video_folder):
         subprocess.call(f"rm -rf {process_video_folder}" , shell=True)
+    os.mkdir(process_video_folder)
     for input_file in input_files:
         video_path = os.path.join(opt.video_root, input_file)
         if os.path.exists(video_path):
