@@ -66,7 +66,9 @@ if __name__=="__main__":
         subprocess.call('rm -rf tmp', shell=True)
 
     outputs = []
-    process_video_folder = "videoPRO2"
+
+    process_video_folder = "videoPRO"
+
     if os.path.exists(process_video_folder):
         subprocess.call(f"rm -rf {process_video_folder}" , shell=True)
     os.mkdir(process_video_folder)
@@ -74,7 +76,6 @@ if __name__=="__main__":
     printProgressBar(0, l, prefix='Progress:', suffix='Complete', length=100)
     for input_file in input_files:
         video_path = os.path.join(opt.video_root, input_file)
-        print(video_path)
         if os.path.exists(video_path):
             subprocess.call(f"mkdir {process_video_folder}/{input_file}", shell=True)
             subprocess.call(f"ffmpeg -i {video_path} -loglevel quiet {process_video_folder}/{input_file}/image_%05d.jpg",
@@ -84,8 +85,7 @@ if __name__=="__main__":
                 result = classify_video(input_file, input_file, class_names, model, opt)
                 outputs.append(result)
             except Exception as ex:
-                pass
-                #print(ex)
+                print(ex)
                 #print(f"Error for the file {input_file}")
             #subprocess.call('rm -rf tmp', shell=True)
         else:
